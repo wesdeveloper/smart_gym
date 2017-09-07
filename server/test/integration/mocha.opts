@@ -1,0 +1,2 @@
+--require test/integration/helper.js
+--reporter spec
