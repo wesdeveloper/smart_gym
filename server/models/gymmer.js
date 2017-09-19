@@ -11,6 +11,7 @@ const GymmerSchema = new Schema({
 	cnpj: { type: String, min: 11, max: 18 },
 	height: { type: String, min: 2, max: 7 },
 	Weight: { type: String, min: 2, max: 7 },
+	sexo: { type: String, min: 1, max: 10 },
 	records: [{ type: Schema.Types.ObjectId, ref: 'records' }],
 	address: {
 		street: { type: String, min: 3, max: 70 },
