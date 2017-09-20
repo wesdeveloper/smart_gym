@@ -1,14 +1,14 @@
 const express = require('express');
-const RecordController = require('../controllers/record');
+const RecordController = require('../controllers/recordController');
 
 const router = express.Router();
 
-router.route('/records')
+router.route('/')
 .get(RecordController.getAllRecords)
 .post(RecordController.addRecord)
 .delete(RecordController.removeRecord);
 
-router.route('/records/:idRecord')
+router.route('/:idRecord')
 .get(RecordController.getRecordById)
 .post(RecordController.addSerieInRecord);
 

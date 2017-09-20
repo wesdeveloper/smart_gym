@@ -1,5 +1,5 @@
 const express = require('express');
-const SerieController = require('../controllers/serie');
+const SerieController = require('../controllers/serieController');
 const { validateParam, validateBody, schemas } = require('../helps/routeHelpers');
 
 const router = express.Router();

@@ -12,8 +12,7 @@ const RecordSchema = new Schema({
 	E: [{ type: Schema.Types.ObjectId, ref: 'serie' }],
 	F: [{ type: Schema.Types.ObjectId, ref: 'serie' }],
 	G: [{ type: Schema.Types.ObjectId, ref: 'serie' }],
-	timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('record', RecordSchema);
 

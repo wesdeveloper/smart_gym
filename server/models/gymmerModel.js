@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const GymmerSchema = new Schema({
+	code: { type: Number, min: 1, max: 9, required },
 	name: { type: String, min: 3, max: 65, required },
 	phone: { type: String, min: 3, max: 65, required },
 	email: { type: String, min: 3, max: 65 },
@@ -12,7 +13,7 @@ const GymmerSchema = new Schema({
 	height: { type: String, min: 2, max: 7 },
 	Weight: { type: String, min: 2, max: 7 },
 	gender: { type: String, min: 1, max: 10 },
-	records: [{ type: Schema.Types.ObjectId, ref: 'records' }],
+	historyRecords: [{ type: Schema.Types.ObjectId, ref: 'records' }],
 	address: {
 		street: { type: String, min: 3, max: 70 },
 		number: { type: String, min: 3, max: 5 },
@@ -21,7 +22,7 @@ const GymmerSchema = new Schema({
 		state: { type: String, min: 3, max: 70 },
 		country: { type: String, min: 3, max: 70 },
 		cep: { type: String, min: 3, max: 70 },
-	 },
+	},
 	user: { type: Schema.Types.ObjectId, ref: 'user' },
 	timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
 });

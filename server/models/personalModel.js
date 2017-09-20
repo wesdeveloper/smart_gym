@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PersonalSchema = new Schema({
+	code: { type: Number, min: 1, max: 9, required },
 	name: { type: String, min: 3, max: 65, required },
 	phone: { type: String, min: 3, max: 65, required },
 	email: { type: String, min: 3, max: 65 },

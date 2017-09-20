@@ -3,9 +3,10 @@ const path = require('path');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 
-const index = require('./routes/index');
-const series = require('./routes/series');
-const records = require('./routes/records');
+const index = require('./routes/indexRouter');
+const gyms = require('./routes/gymsRouter');
+const series = require('./routes/seriesRouter');
+const records = require('./routes/recordsRouter');
 
 const app = express();
 require('./config/db');
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/api/gyms', gyms);
 app.use('/api/series', series);
 app.use('/api/records', records);
 

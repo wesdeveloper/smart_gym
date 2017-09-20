@@ -1,5 +1,5 @@
-const RecordModel = require('../models/record');
-const SerieModel = require('../models/serie');
+const RecordModel = require('../models/recordModel');
+const SerieModel = require('../models/serieModel');
 
 module.exports = {
 	getAllRecords: (req, res) => {

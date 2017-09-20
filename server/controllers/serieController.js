@@ -1,4 +1,4 @@
-const SerieModel = require('../models/serie');
+const SerieModel = require('../models/serieModel');
 
 module.exports = {
 	getSerieById: (req, res) => {

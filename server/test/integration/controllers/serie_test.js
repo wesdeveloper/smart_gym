@@ -1,24 +1,24 @@
-const SerieModel = require('../../../models/serie');
+const SerieModel = require('../../../models/serieModel');
 
 const mockSerie = {
-	num_ap: '123',
 	exercise: 'Extensora',
-	quantities: '4',
+	quantities: 4,
 	repeatQuantity: '12',
+	target: 'Peito',
 };
 
 const mockUpdateSerie = {
-	num_ap: '567',
 	exercise: 'Agachamento',
 	quantities: '5',
 	repeatQuantity: '20',
+	target: 'Perna',
 };
 
 const createSerie = () => {
 	const newSerie = new SerieModel(mockSerie);
 	return newSerie.save()
 		.then(serie => serie._id)
-		.catch(err => res.json(err));
+		.catch(err => err);
 };
 const removeSerie = id => SerieModel.remove({ _id: id }, error => error || '');
 
@@ -33,19 +33,20 @@ describe('Serie controller', () => {
 	});
 
 	it('Should get a serie by id /api/series/:idSerie GET', (done) => {
-		createSerie().then((idSerie) => {
-			request
-			.get(`/api/series/${idSerie}`)
-			.end((err, res) => {
-				expect(res.status).to.be.eql(200);
-				expect(res.body.num_ap).to.be.eql('123');
-				expect(res.body.exercise).to.be.eql('Extensora');
-				expect(res.body.quantities).to.be.eql(4);
-				expect(res.body.repeatQuantity).to.be.eql('12');
-				removeSerie(idSerie);
-				done(err);
-			});
-		});
+		createSerie()
+			.then((idSerie) => {
+				request
+				.get(`/api/series/${idSerie}`)
+				.end((err, res) => {
+					expect(res.status).to.be.eql(200);
+					expect(res.body.exercise).to.be.eql('Extensora');
+					expect(res.body.quantities).to.be.eql(4);
+					expect(res.body.repeatQuantity).to.be.eql('12');
+					removeSerie(idSerie);
+					done(err);
+				});
+			})
+			.catch(err => done(err));
 	});
 
 	it('Should create e Serie /api/series POST', (done) => {
@@ -56,7 +57,6 @@ describe('Serie controller', () => {
 			const { body } = res;
 
 			expect(res.status).to.be.eql(201);
-			expect(body.num_ap).to.be.eql('123');
 			expect(body.exercise).to.be.eql('Extensora');
 			expect(body.quantities).to.be.eql(4);
 			expect(body.repeatQuantity).to.be.eql('12');
@@ -73,7 +73,6 @@ describe('Serie controller', () => {
 			.send(mockUpdateSerie)
 			.end((err, res) => {
 				expect(res.status).to.be.eql(201);
-				expect(res.body.num_ap).to.be.eql('567');
 				expect(res.body.exercise).to.be.eql('Agachamento');
 				expect(res.body.quantities).to.be.eql(5);
 				expect(res.body.repeatQuantity).to.be.eql('20');
@@ -86,12 +85,7 @@ describe('Serie controller', () => {
 	it('Should delete a serie /api/series/:idSerie DELETE', (done) => {
 		request
 		.post('/api/series')
-		.send({
-			num_ap: '123',
-			exercise: 'Extensora',
-			quantities: '4',
-			repeatQuantity: '12',
-		})
+		.send(mockSerie)
 		.end((error, res) => {
 			if (error) {
 				throw error;
