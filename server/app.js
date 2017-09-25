@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 
 const index = require('./routes/indexRouter');
 const gyms = require('./routes/gymsRouter');
+const gymmers = require('./routes/gymmersRouter');
 const series = require('./routes/seriesRouter');
 const records = require('./routes/recordsRouter');
 
@@ -20,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/api/gyms', gyms);
+app.use('/api/gymmers', gymmers);
 app.use('/api/series', series);
 app.use('/api/records', records);
 
