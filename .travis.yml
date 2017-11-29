@@ -3,4 +3,4 @@ node_js:
   - "6"
 sudo: false
 # .travis.yml
-script: cd server/ && yarn && npm test
+script: npm install && npm test
