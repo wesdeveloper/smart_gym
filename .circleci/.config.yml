@@ -1,8 +1,13 @@
 version: 2
 jobs:
-  test:
-    docker:
-      - image: circleci/node:8.11.3
-    steps:
-      - test
-      - run: npm test
+    build:
+        docker:
+            - image: circleci/node:7
+        steps:
+            - checkout
+            - run:
+                name: install-dependencies
+                command: npm install
+            - run:
+                name: tests
+                command: npm test
